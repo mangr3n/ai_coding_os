@@ -1,0 +1,10 @@
+{
+    "code_style": {
+        "language_defaults": {},
+        "formatting": {}
+    },
+    "communication": {
+        "verbosity": "normal",
+        "code_explanations": true
+    }
+}

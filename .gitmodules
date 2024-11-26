@@ -1,0 +1,3 @@
+[submodule "ai_coding_tools"]
+	path = ai_coding_tools
+	url = https://github.com/mikl0s/ai_coding_tools.git
