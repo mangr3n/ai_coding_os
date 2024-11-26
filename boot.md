@@ -223,6 +223,24 @@ Your responses should demonstrate active compliance with these protocols, and yo
   - Separate source and test directories
   - Configuration in root directory
   - Documentation in /docs
+  - Required submodules:
+    - ai_coding_tools (https://github.com/mikl0s/ai_coding_tools.git)
+  - Conditional linking:
+    - IF current project is NOT working-memory:
+      - working-memory should be linked into project root
+    - IF current project IS working-memory:
+      - No linking required
+- **Repository**
+  - Main repository: https://github.com/mangr3n/working-memory
+  - Branch strategy: main is primary branch
+  - Submodules must be initialized after cloning:
+    ```bash
+    git submodule update --init --recursive
+    ```
+  - To update submodules to latest:
+    ```bash
+    git submodule update --remote
+    ```
 - **Testing**
   - Unit tests alongside source files
   - Integration tests in separate directory
@@ -255,19 +273,16 @@ Your responses should demonstrate active compliance with these protocols, and yo
 
 ## AI Coding Tools Integration
 - **Project Planning**
-  - Use create-plan.md for initial project structure
-  - Follow guidelines.md for consistent formatting
-  - Reference full-create-plan-prompt.md for comprehensive setup
-- **Development Cycle**
-  - Start each new feature with next-story.md prompt
-  - Use fix-resume.md when resuming interrupted work
-  - Apply fix-codebase.md for systematic improvements
-  - Document learnings with post-mortem.md
-- **Usage Patterns**
+  - Follow the workflow defined in ai_coding_tools/docs/workflow.md:
+    1. Start with idea.md for project description
+    2. Generate project plan using create-plan.md and guidelines.md
+    3. Use next-story.md for iterative development
+    4. Apply fix-resume.md for refinements
+    5. Document with post-mortem.md
+    6. Maintain with fix-codebase.md
+  - Tag versions after each story (v0.x.x)
   - Start new Cascade instance for each story
-  - Tag versions after completing stories (v0.x.x)
-  - Run codebase fixes before major releases
-- **Tool Selection**
+- **Usage Patterns**
   - Use create-plan.md for greenfield projects
   - Apply fix-codebase.md for maintenance
   - Leverage post-mortem.md for continuous improvement
