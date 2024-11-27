@@ -10,6 +10,10 @@ You are an AI assistant operating under a strict working memory and operational 
   - <LANG>: Primary language in use (e.g., JS, PY, MD)
   - [active_files]: List of relevant files in current context
   - !MEM status: OK, PARTIAL, or LOST
+- Working memory is maintained in the project's docs/dev directory:
+  - idea.md: Current project state and patterns
+  - plan.md: Project structure and progress tracking
+  - post-mortem.md: Decisions, lessons, and improvements
 - Maintain and track your working memory state
 - Signal any memory or context issues using the specified alert system
 - Memory Alerts:
@@ -209,6 +213,45 @@ Your responses should demonstrate active compliance with these protocols, and yo
   - Run fix-codebase.md before marking complete
   - Update project documentation
 
+## Project Structure
+- Verify when initialized that the current project includes your necessary setup.  If not stop and ask to follow this structure:
+  ```
+  <project_root>/
+    docs/
+      dev/
+        idea.md         # see os/ai_coding_tools/docs/01-idea.md
+        plan.md         # see os/ai_coding_tools/docs/05-plan.md
+        post-mortem.md  # see os/ai_coding_tools/docs/08-post-mortem.md
+    os/                 # The AI Coding OS directory, your "operating system".
+  ```
+
+- Documentation files must be created and maintained in the `docs/dev` directory
+- All paths should be referenced relative to the project root
+- The `os` directory is reserved for system-specific implementations
+
+## Project Initialization Protocol
+
+## 1. System Integration
+- This AI Coding OS project MUST be linked as the `os/` directory in any project being worked on
+- Integration steps:
+  1. Create symbolic link from this project to target project's `os/` directory
+  2. Verify the link is properly established
+  3. Confirm access to working memory protocols
+
+## 2. Documentation Setup
+After linking the os/ directory:
+- Initialize project documentation in `docs/dev/`:
+  - `idea.md` - Project state and patterns
+  - `plan.md` - Structure and progress tracking
+  - `post-mortem.md` - Decisions and improvements
+- All paths in documentation should be relative to project root
+
+## 3. Context Establishment
+Once integration is complete:
+- Establish clear task focus
+- Track progress against goals
+- Signal context switches
+
 ## Environment
 - **Workspaces**: 
   - /Users/mangr3n/CascadeProjects
@@ -224,27 +267,17 @@ Your responses should demonstrate active compliance with these protocols, and yo
   - Configuration in root directory
   - Documentation in /docs
   - Required submodules:
-    - ai_coding_tools (https://github.com/mikl0s/ai_coding_tools.git)
+    - `ai_coding_tools` (`https://github.com/mikl0s/ai_coding_tools.git`)
   - Conditional linking:
-    - IF current project is NOT working-memory:
-      - working-memory should be linked into project root
-    - IF current project IS working-memory:
-      - No linking required
-- **Repository**
-  - Main repository: https://github.com/mangr3n/working-memory
-  - Branch strategy: main is primary branch
-  - Submodules must be initialized after cloning:
-    ```bash
-    git submodule update --init --recursive
-    ```
-  - To update submodules to latest:
-    ```bash
-    git submodule update --remote
-    ```
-- **Testing**
-  - Unit tests alongside source files
-  - Integration tests in separate directory
-  - Test naming: test_[feature].[ext] where [ext] matches source file extension
+    - IF current project is NOT `ai_coding_os`:
+      - `ai_coding_os` must be linked at `<PROJECT_ROOT>/os`
+      - Command: `ln -s <AI_CODING_OS_PATH> <PROJECT_ROOT>/os`
+      - Variables:
+        - `<AI_CODING_OS_PATH>`: Absolute path to ai_coding_os repository
+        - `<PROJECT_ROOT>`: Absolute path to your project's root directory
+    - IF current project IS `ai_coding_os`:
+      - Follow core development protocols
+      - No linking required (this is the source)
 
 ## Workflows
 - **Development**

@@ -8,6 +8,11 @@ An "operating system" that enhances AI-assisted development by providing working
 - Adhere to user-defined coding preferences and standards
 - Maintain consistent code quality and best practices
 
+## Caveat - FOR HUMANS
+This is a theory, put into practice.  Some of this works.  It is being actively used with Windsurf (and Claude) by me.  I've included a couple of other peoples work in here.  Use at your own risk.  If you have any suggestions, please reach out.
+
+This is *rough, rough, rough*.  I'm trying to work out how to be concise and precise.  I'm trying to workout what CAN be done, with the current state of AI, in order to better help me, but to setup the AI for success in helping me.
+
 ## Installation
 
 ### Quick Install (Recommended)
