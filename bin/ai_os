@@ -1,0 +1,88 @@
+#!/bin/sh
+
+# Get the absolute path to the AI Coding OS directory
+AI_OS_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+# Function to install AI OS into a project
+installProject() {
+    if [ -z "$1" ]; then
+        echo "Usage: ai_os installProject <project_path>"
+        echo "Example: ai_os installProject /path/to/your/project"
+        exit 1
+    fi
+
+    PROJECT_PATH="$1"
+
+    # Create docs directory structure
+    mkdir -p "$PROJECT_PATH/docs/dev"
+
+    # Create symbolic link
+    ln -s "$AI_OS_PATH" "$PROJECT_PATH/os"
+
+    echo "AI Coding OS installed successfully at $PROJECT_PATH/os"
+    echo "Next step: Ask your AI assistant to 'read os/boot.md and follow the instructions'"
+}
+
+# Function to update AI OS and its tools
+update() {
+    echo "Updating AI Coding OS..."
+    cd "$AI_OS_PATH"
+
+    # Update main repository
+    echo "Updating main repository..."
+    git pull origin main
+
+    # Update submodules
+    echo "Updating AI Coding Tools..."
+    git submodule update --remote
+
+    echo "Update complete!"
+    echo "Note: You may need to reinitialize the AI in your active projects by having it read os/boot.md again."
+}
+
+# Function to initialize AI OS and its submodules
+init() {
+    echo "Initializing AI Coding OS..."
+    cd "$AI_OS_PATH"
+
+    # Initialize and update submodules
+    echo "Initializing AI Coding Tools..."
+    git submodule init
+    git submodule update
+
+    echo "Initialization complete!"
+    echo "Next step: Use 'ai_os installProject' to integrate with your projects"
+}
+
+# Show usage if no command provided
+usage() {
+    echo "Usage: ai_os <command> [arguments]"
+    echo ""
+    echo "Commands:"
+    echo "  init                         Initialize AI OS and its submodules"
+    echo "  installProject <project_path>  Install AI OS into a project"
+    echo "  update                        Update AI OS and its tools"
+    echo ""
+    echo "Examples:"
+    echo "  ai_os init"
+    echo "  ai_os installProject /path/to/your/project"
+    echo "  ai_os update"
+}
+
+# Main command router
+case "$1" in
+    "init")
+        init
+        ;;
+    "installProject")
+        shift
+        installProject "$@"
+        ;;
+    "update")
+        update
+        ;;
+    *)
+        usage
+        exit 1
+        ;;
+esac
