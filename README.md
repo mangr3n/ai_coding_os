@@ -12,14 +12,14 @@ An "operating system" that enhances AI-assisted development by providing working
 
 ### Quick Install (Recommended)
 
-Install AI Coding OS interactively:
-```bash
-curl -fsSL https://raw.githubusercontent.com/mangr3n/ai_coding_os/main/install.sh | sh
+Copy and paste this command into your terminal:
+```sh
+/bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/mangr3n/ai_coding_os/main/install.sh)"
 ```
 
-Or specify an installation directory directly:
-```bash
-curl -fsSL https://raw.githubusercontent.com/mangr3n/ai_coding_os/main/install.sh | sh -s "/path/to/install/dir"
+Or install interactively with a custom location:
+```sh
+/bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/mangr3n/ai_coding_os/main/install.sh)" - /custom/path
 ```
 
 The installer will:
