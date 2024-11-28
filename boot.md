@@ -37,6 +37,10 @@ IMPORTANT: Upon reading this file at the start of any conversation, IMMEDIATELY:
 1. Check for `docs/dev` directory and that it contains the required files (`idea.md`, `plan.md`, `post-mortem.md`).
 2. If any component is missing, refer to `/os/README.md` for initialization protocol.
 3. If any component is missing, refer to `/os/ai_coding_tools/docs/workflow.md` for how and when to create them.
+4. Review workflow addons for additional features:
+   - Check `/os/workflow_addons/workflow_addons.md` for available addons
+   - Apply relevant addons based on project needs (e.g., reference code management)
+   - Document any addon usage in project documentation
 
 ## 3. Task Processing Framework
 ### Task Categorization
@@ -67,7 +71,7 @@ IMPORTANT: Upon reading this file at the start of any conversation, IMMEDIATELY:
 2. Planning Phase
    - Create dedicated `docs/dev/idea.md` entries
       - See `os/ai_coding_tools/docs/idea.md` for format
-      - follow the directions in `os/ai_coding_tools/docs/01-idea.md`
+      - follow the example idea file in `os/ai_coding_tools/docs/01-idea.md`
       - Prioritize by risk/impact
       - Define success criteria
    - Use `os/ai_coding_tools/docs/02-create-plan.md` to transform `idea.md` into `plan.md`

@@ -3,6 +3,15 @@
 # Get the absolute path to the AI Coding OS directory
 AI_OS_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
+# Function to check if a line exists in a file
+line_exists() {
+    if [ -f "$2" ]; then
+        grep -Fxq "$1" "$2"
+        return $?
+    fi
+    return 1
+}
+
 # Function to install AI OS into a project
 installProject() {
     if [ -z "$1" ]; then
@@ -12,14 +21,56 @@ installProject() {
     fi
 
     PROJECT_PATH="$1"
+    echo "Installing AI OS in $PROJECT_PATH..."
 
-    # Create docs directory structure
-    mkdir -p "$PROJECT_PATH/docs/dev"
+    # Create docs directory structure if it doesn't exist
+    if [ ! -d "$PROJECT_PATH/docs/dev" ]; then
+        echo "Creating docs/dev directory..."
+        mkdir -p "$PROJECT_PATH/docs/dev"
+    else
+        echo "docs/dev directory already exists"
+    fi
 
-    # Create symbolic link
-    ln -s "$AI_OS_PATH" "$PROJECT_PATH/os"
+    # Create reference directory if it doesn't exist
+    if [ ! -d "$PROJECT_PATH/reference" ]; then
+        echo "Creating reference directory..."
+        mkdir -p "$PROJECT_PATH/reference"
+        
+        # Copy template files
+        echo "Setting up reference documentation..."
+        cp "$AI_OS_PATH/ai_coding_tools/templates/REFERENCES.md" "$PROJECT_PATH/reference/"
+    else
+        echo "reference directory already exists"
+    fi
 
-    echo "AI Coding OS installed successfully at $PROJECT_PATH/os"
+    # Create symbolic link if it doesn't exist or is broken
+    if [ ! -L "$PROJECT_PATH/os" ] || [ ! -e "$PROJECT_PATH/os" ]; then
+        echo "Creating symbolic link to AI OS..."
+        ln -sf "$AI_OS_PATH" "$PROJECT_PATH/os"
+    else
+        echo "AI OS symbolic link already exists"
+    fi
+
+    # Add reference directory to .gitignore if not already present
+    GITIGNORE="$PROJECT_PATH/.gitignore"
+    REFERENCE_IGNORE="reference/"
+    
+    # Create .gitignore if it doesn't exist
+    if [ ! -f "$GITIGNORE" ]; then
+        echo "Creating .gitignore file..."
+        touch "$GITIGNORE"
+    fi
+
+    # Add reference/ to .gitignore if not already present
+    if ! line_exists "$REFERENCE_IGNORE" "$GITIGNORE"; then
+        echo "Adding reference/ to .gitignore..."
+        echo "" >> "$GITIGNORE"  # Add a newline for cleaner separation
+        cat "$AI_OS_PATH/ai_coding_tools/templates/gitignore_entry.txt" >> "$GITIGNORE"
+    else
+        echo "reference/ already in .gitignore"
+    fi
+
+    echo "AI Coding OS installation completed successfully!"
     echo "Next step: Ask your AI assistant to 'read os/boot.md and follow the instructions'"
 }
 
