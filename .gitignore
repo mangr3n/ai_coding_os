@@ -25,4 +25,4 @@ yarn-error.log*
 .env.*.local
 
 # Project specific
-/docs/dev/
+# /docs/dev/

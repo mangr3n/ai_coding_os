@@ -84,16 +84,21 @@ ai_coding_os/
    ```bash
    ./bin/ai_os installProject /path/to/your/project
    ```
-
    This will:
    - Create the required directory structure
    - Link the AI Coding OS to your project
    - Provide next steps
 
-2. Initialize the session by instructing your AI assistant:
-   ```
-   read os/boot.md and follow the instructions
-   ```
+2. Initialize the AI assistant:
+   
+   For Windsurf users:
+   - Option 1 (Global): Copy contents of `boot.md` into Windsurf Settings > Set Global AI Rules
+   - Option 2 (Project): Copy contents of `boot.md` into project-specific AI configuration
+
+   For other AI coding assistants:
+   - If your AI assistant supports global configuration, copy `boot.md` contents there
+   - If it supports project-specific configuration, copy to your project's AI config
+   - Otherwise, instruct your AI assistant to: `read os/boot.md and follow the instructions`
 
 ## How It Works
 
@@ -117,7 +122,7 @@ The AI Coding OS operates by:
 ## Usage
 
 1. **Starting a Session**:
-   - Always start by having the AI read `os/boot.md`
+   - If the AI has a global or project specific memory, load boot.md into it, for use with Windsurf we are limiting it's character length to 6000 characters.
    - The AI will initialize its working memory
    - Context tracking begins automatically
 

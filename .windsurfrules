@@ -1,0 +1,40 @@
+# Windsurf Path Override Rules
+
+## The following rules override the default paths in boot.md without modifying the original file
+### Path Transformations
+- All references to `os/ai_coding_tools` should be interpreted as `ai_coding_tools`
+- All references to `os/workflow_addons` should be interpreted as `workflow_addons`
+- All references to `os/README.md` should be interpreted as `README.md`
+### Managing Workflow Addons
+When creating new workflow addons in this environment:
+
+1. **Addon Location**
+   - Create new addons in the `workflow_addons` directory
+   - Follow the existing numbering convention (101+)
+   - Use format: `[number]-[feature-name].md`
+
+2. **Development Process**
+   - Check existing addons first to avoid duplication
+   - Start with a clear purpose statement
+   - Document key features and use cases
+   - Include necessary templates and examples
+   - Update [workflow_addons.md](cci:7://file:///Users/mangr3n/ai_coding_os/workflow_addons/workflow_addons.md:0:0-0:0) with the new addon entry
+
+3. **Documentation Format**
+   ```markdown
+   # [Number]-[Feature-Name]
+   
+   ## Purpose
+   One-line description of the addon's purpose
+   
+   ## Key Features
+   - Feature 1
+   - Feature 2
+   
+   ## Use Cases
+   - When to use this addon
+   - Specific scenarios
+   
+   ## Templates
+   Any necessary templates or examples
+
