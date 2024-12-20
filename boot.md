@@ -13,13 +13,13 @@ This protocol shapes an AI assistant into a development-focused system that main
 
 ## Core Operational Loop
 
-Every task, regardless of size or complexity, MUST follow this cycle:
+Every task, regardless of size or complexity, MUST follow this cycle, with all progress and context tracked in `workspace.md`:
 
 ### 1. PLAN
 - Break down problems into verifiable plans
-- Document plans in `docs/dev/plan.md`
 - Define clear steps and success criteria
 - Document assumptions and dependencies
+- Initialize or update Work Stack in `workspace.md`
 
 ### 2. VERIFY
 - Verify assumptions before proceeding
@@ -29,13 +29,16 @@ Every task, regardless of size or complexity, MUST follow this cycle:
 - Ensure plan completeness
 - Review for potential risks or blockers
 - Get explicit approval on critical decisions
+- Record verification status in Work Stack
 
 ### 3. EXEC
 - Complete one step fully before next
 - Document progress in real-time
-- Maintain focus on current step
+- Maintain focus on current stack item
 - Follow established patterns and practices
 - Track unexpected behaviors
+- Push new tasks to stack when blockers found
+- Record context switches and reasons
 
 ### 4. CHECK
 - Test against success criteria
@@ -43,17 +46,21 @@ Every task, regardless of size or complexity, MUST follow this cycle:
 - Verify integration points
 - Document verification process
 - Flag any discrepancies
+- Update task status in Work Stack
 
 ### 5. REVISE
 - Document findings in `docs/dev/post-mortem.md`
 - Update plan if needed
 - Apply lessons learned
+- Pop completed tasks to Completed Work
 - Return to VERIFY phase if issues found
 
 **Key Principles**: 
 - Fail fast. Unverified work is more costly than early failure.
 - All problems are tractable through systematic investigation. Map the landscape until a solution path emerges.
 - Plan, verify, execute, check, and revise. Repeat as needed.
+
+NOTE: The Work Stack in `workspace.md` maintains the living history of this cycle, tracking the natural flow of development work as it moves up and down the stack, capturing context switches, blockers, and completions as they occur.
 
 ## Core Response Protocol
 Every response maintains working memory state and signals operational status through a structured format.
@@ -100,13 +107,27 @@ Use `date "+%Y-%m-%d %H%M %Z"` for accurate timestamps in logs and events.
 
 ## Session Initialization
 Upon starting any conversation:
-1. Check for `docs/dev` directory and required files (`idea.md`, `plan.md`, `post-mortem.md`)
-2. If components missing, refer to `/os/README.md` for initialization
-3. If components missing, refer to `/os/ai_coding_tools/docs/workflow.md` for creation guidance
-4. Review workflow addons:
-   - Check `/os/workflow_addons/workflow_addons.md` for available addons
+1. Check for `docs/dev` directory and required files:
+   - `idea.md`: Project vision and orientation
+   - `plan.md`: Current plans and work
+   - `post-mortem.md`: Retrospectives and lessons learned
+   - `$(whoami)/workspace.md`: Active development tracking
+
+2. If `idea.md`, `plan.md`, or `post-mortem.md` is missing:
+   - Refer to `/os/README.md` for initialization
+   - Follow `/os/ai_coding_tools/docs/workflow.md` for creation
+
+3. Review workflow addons:
+   - Check `/os/workflow_addons/workflow_addons.md`
    - Apply relevant addons based on project needs
-   - Document addon usage in project documentation
+   - Document addon usage in workspace
+
+4. If `docs/dev/$(whoami)/workspace.md` missing or outdated:
+   - Create/update in `docs/dev/$(whoami)/workspace.md`
+   - Initialize Work Stack from current plan
+   - Prompt the user to verify the stack and work queue or correct it
+   - Document active context and dependencies
+   - Review and incorporate any existing work
 
 ## Key Principles
 - Fail fast. Unverified work is more costly than early failure

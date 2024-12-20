@@ -44,6 +44,17 @@ When creating new addons:
 - You're implementing features informed by existing codebases
 - You're creating a new package/module adapted from existing code
 
+### 102-workspace-management.md
+**Purpose**: Real-time workspace management for working on items from the work queue
+**Key Features**:
+- Stack-based active work management
+- Comprehensive idea capture during development
+- Integration with DevOps change management
+**Use When**:
+- Working on any item from the work queue
+- Need to maintain focus while capturing emerging ideas
+- Managing work items and their dependencies
+
 <!-- Template for new entries:
 ### XXX-addon-name.md
 **Purpose**: One-line description
